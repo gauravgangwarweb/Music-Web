@@ -1,7 +1,11 @@
+import SearchPage from "@/components/search";
 import Songcard from "@/components/songcard";
 import { useGetAllSongsQuery } from "@/services/songs";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Homepage = () => {
+    const hide = useSelector((state) => state.hide.hide)
     const { data, error, isLoading } = useGetAllSongsQuery();
     return (
         <div className="flex">
@@ -16,7 +20,12 @@ const Homepage = () => {
                     <p>Radio</p>
                 </div>
             </div>
-            <div className="md:w-[90%] px-3 md:px-0 pt-5">
+            {/* --------Search---------  */}
+            <div className={hide ? "block md:w-[90%] px-3 md:px-0 pt-5" : "hidden"}>
+                <SearchPage />
+            </div>
+            {/* --------home---------  */}
+            <div className={hide ? "hidden" : "block md:w-[90%] px-3 md:px-0 pt-5"}>
                 <div className="w-[100%]">
                     <div className="w-[100%] flex justify-between items-center md:hidden">
                         <p className="text-[#34444D] text-[15px]">Browse</p>

@@ -1,4 +1,5 @@
 import { setId } from "@/services/id";
+import { setPlay } from "@/services/play";
 import { useSongDetailsQuery } from "@/services/songs";
 import { useDispatch } from "react-redux";
 
@@ -16,7 +17,7 @@ const Songcard = (props) => {
     }
 
     return (
-        <div onClick={() => dispatch(setId(dataT))} className="text-white flex flex-col gap-2 mb-2 container md:w-[80%] ">
+        <div onClick={() => {dispatch(setId(dataT)); dispatch(setPlay(true))}} className="text-white flex flex-col gap-2 mb-2 container md:w-[80%] ">
             <img className="image w-[100%] rounded-md" src={props.song.image[2].link} alt="song-image" />
             <p className="absolute middle text-white">{props.song.name}</p>
         </div>

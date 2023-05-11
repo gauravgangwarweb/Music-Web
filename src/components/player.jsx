@@ -1,11 +1,14 @@
+import { setPlay } from "@/services/play";
 import { Howl } from "howler";
 import React, { use, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Player = () => {
+    const dispatch = useDispatch()
     const audioRef = useRef(null);
     const data = useSelector((state) => state.id.audioLink)
-    const [isPlaying, setIsPlaying] = useState(false);
+    const isPlaying = useSelector((state) => state.play.play)
+    console.log(isPlaying);
     const [currentTime, setCurrentTime] = useState(0);
     let duration = 0
     const handlePlayPause = () => {
@@ -14,7 +17,7 @@ const Player = () => {
         } else {
             audioRef.current.play();
         }
-        setIsPlaying(!isPlaying)
+        dispatch(setPlay(!isPlaying))
     }
 
     const handleTimeUpdate = () => {
@@ -32,7 +35,7 @@ const Player = () => {
         audioRef.current.currentTime = newTime;
         setCurrentTime(newTime);
     }
-    console.log(duration)
+
     return (
         <div className="bottom-0 bg-[#21252D] fixed w-[100%] flex gap-2 flex-col">
             <input className="w-[100%]" type="range" min={0} max={duration} value={currentTime} onChange={handleSeek} />

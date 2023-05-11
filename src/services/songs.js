@@ -10,8 +10,12 @@ export const songsApi = createApi({
 
         songDetails: builder.query({
             query: (id) => `songs?id=${id}`
+        }),
+
+        searchSong: builder.query({
+            query: (value) => `search/songs?query=${value}`
         })
     }),
 })
 
-export const { useGetAllSongsQuery, useSongDetailsQuery } = songsApi
+export const { useGetAllSongsQuery, useSongDetailsQuery, useSearchSongQuery } = songsApi
