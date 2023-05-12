@@ -9,7 +9,7 @@ const Navbar = () => {
             <div className="flex flex-col md:flex-row md:gap-10 gap-2 md:items-center md:w-[70%] w-[100%]">
                 <div className="flex">
                     <img className="md:hidden" src="Sort.png" alt="hamburger" />
-                    <img src="logo.png" alt="logo" />
+                    <img src="logo.png" alt="logo" onClick={() => dispatch(setHide(false))} />
                 </div>
                 <div className="flex border-[2px] border-[#3D464D] md:w-[70%] w-[100%] rounded-md" onClick={() => dispatch(setHide(true))}>
                     <input type="text" className="bg-[#151A1F] text-[#34444D] pl-4 py-2 w-[96%] rounded-md" placeholder="Search Songs, artists & albums you like" onKeyUp={(e) => dispatch(setQuery(e.target.value))} />

@@ -44,10 +44,11 @@ const Player = () => {
                     <img src={data.image} alt="songImage" />
                     <p className="text-white">{data.name}</p>
                 </div>
-                <audio src={data.link} ref={audioRef} onTimeUpdate={handleTimeUpdate} ></audio>
+                <audio src={data.link} ref={audioRef} onTimeUpdate={handleTimeUpdate} autoPlay ></audio>
                 <button className="bg-[#FF0000] rounded-[100px] w-[50px] flex items-center justify-center" onClick={handlePlayPause}>
                     <img src={isPlaying ? "play.png" : "pause.png"} alt="play/pause" />
                 </button>
+                {/* <div className="hidden md:block"></div> */}
             </div>
         </div>
     )
