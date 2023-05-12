@@ -5,7 +5,6 @@ import Songcard from "./songcard";
 const SearchPage = () => {
     const searchQuery = useSelector((state) => state.query.query)
     const { data, error, isLoading } = useSearchSongQuery(searchQuery);
-
     return (
         <div className="w-[100%]">
             {!data ?

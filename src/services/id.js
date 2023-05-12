@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     audioLink: {
-      link: "https://aac.saavncdn.com/679/b0b7a063d3efddf3a771a0dc91b30d69_320.mp4",
-      image: "https://c.saavncdn.com/679/Thunderclouds-English-2018-20180809032729-50x50.jpg",
-      name: "Thunderclouds"
+      link: "https://aac.saavncdn.com/426/81928af66e1f27c4dcdf6c6c04424605_320.mp4",
+      image: "https://c.saavncdn.com/426/Hancock-Hindi-2018-20220425131026-50x50.jpg",
+      name: "Hancock"
     }
 }
 
