@@ -10,6 +10,7 @@ const Player = () => {
     const isPlaying = useSelector((state) => state.play.play)
     console.log(isPlaying);
     const [currentTime, setCurrentTime] = useState(0);
+    const [volume, setVolume] = useState(1)
     let duration = 0
     const handlePlayPause = () => {
         if (isPlaying) {
@@ -24,17 +25,30 @@ const Player = () => {
         setCurrentTime(audioRef.current.currentTime);
     }
 
-    if (audioRef.current !== null){
+    if (audioRef.current !== null) {
         duration = audioRef.current.duration;
-    }else {
+    } else {
         duration = 100
     }
-    
+
     const handleSeek = (e) => {
         const newTime = e.target.value;
         audioRef.current.currentTime = newTime;
         setCurrentTime(newTime);
     }
+
+    const changeVolume = () => {
+        audioRef.current.volume = volume
+    }
+
+    const formatTime = (time) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    const elapsedTime = formatTime(currentTime);
+    const totalDuration = formatTime(duration);
 
     return (
         <div className="bottom-0 bg-[#21252D] fixed w-[100%] flex gap-2 flex-col">
@@ -42,13 +56,24 @@ const Player = () => {
             <div className="flex justify-between mb-2 px-3">
                 <div className="flex gap-2">
                     <img src={data.image} alt="songImage" />
-                    <p className="text-white">{data.name}</p>
+                    <p className="text-white w-[50%]">{data.name}</p>
                 </div>
                 <audio src={data.link} ref={audioRef} onTimeUpdate={handleTimeUpdate} autoPlay ></audio>
-                <button className="bg-[#FF0000] rounded-[100px] w-[50px] flex items-center justify-center" onClick={handlePlayPause}>
+                <button className="bg-[#FF0000] rounded-full w-[50px] flex items-center justify-center" onClick={handlePlayPause}>
                     <img src={isPlaying ? "play.png" : "pause.png"} alt="play/pause" />
                 </button>
-                {/* <div className="hidden md:block"></div> */}
+                {/* Volume slider */}
+                <div className="md:flex hidden">
+                    <div className="flex gap-2">
+                        <p className="text-white">{elapsedTime}</p>
+                        <p className="text-white">{totalDuration}</p>
+                    </div>
+                    <div className='md:flex hidden justify-center items-center gap-4 py-2'>
+                        <i className="fa-sharp fa-solid fa-volume-down fa-lg text-white"></i>
+                        <input type="range" min="0" max="1" step="0.01" defaultValue={volume} className='progress' onChange={(e) => setVolume(parseFloat(e.target.value))} onInput={changeVolume} />
+                        <i className="fa-sharp fa-solid fa-volume-up fa-lg text-white"></i>
+                    </div>
+                </div>
             </div>
         </div>
     )
