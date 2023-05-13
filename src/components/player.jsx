@@ -59,13 +59,14 @@ const Player = () => {
                     <p className="text-white w-[50%]">{data.name}</p>
                 </div>
                 <audio src={data.link} ref={audioRef} onTimeUpdate={handleTimeUpdate} autoPlay ></audio>
-                <button className="bg-[#FF0000] rounded-full w-[50px] flex items-center justify-center" onClick={handlePlayPause}>
+                <button className="bg-[#FF0000] rounded-full w-[50px] h-[50px] flex items-center justify-center md:absolute md:right-[50%]" onClick={handlePlayPause}>
                     <img src={isPlaying ? "play.png" : "pause.png"} alt="play/pause" />
                 </button>
                 {/* Volume slider */}
-                <div className="md:flex hidden">
-                    <div className="flex gap-2">
+                <div className="md:flex hidden justify-center items-center gap-4">
+                    <div className="flex gap-1">
                         <p className="text-white">{elapsedTime}</p>
+                        <p className="text-white">/</p>
                         <p className="text-white">{totalDuration}</p>
                     </div>
                     <div className='md:flex hidden justify-center items-center gap-4 py-2'>
