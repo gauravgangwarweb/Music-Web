@@ -5,7 +5,7 @@ export const songsApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'https://saavn.me/' }),
     endpoints: (builder) => ({
         getAllSongs: builder.query({
-            query: () => `modules?language=punjabi`,
+            query: (lang) => `modules?language=${lang}`,
         }),
 
         songDetails: builder.query({

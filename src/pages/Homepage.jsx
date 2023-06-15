@@ -1,12 +1,14 @@
 import SearchPage from "@/components/search";
 import Songcard from "@/components/songcard";
 import { useGetAllSongsQuery } from "@/services/songs";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const Homepage = () => {
     const hide = useSelector((state) => state.hide.hide)
-    const { data, error, isLoading } = useGetAllSongsQuery();
+    const [lang, setLang] = useState("punjabi")
+    const { data, error, isLoading } = useGetAllSongsQuery(lang);
+    
     return (
         <div className="flex">
             <div className="w-[20%] hidden md:flex flex-col text-white text-[22px]">
@@ -33,12 +35,12 @@ const Homepage = () => {
                     </div>
                 </div>
                 <p className="text-white text-[20px] italic hidden md:block mt-1">Trending Songs</p>
-                <div className="md:hidden flex text-white gap-3 mt-3">
-                    <button className="rounded-[16px] bg-[#21252D] px-2 py-2 text-[13px]">For You</button>
-                    <button className="rounded-[16px] bg-[#21252D] px-2 py-2 text-[13px]">English</button>
-                    <button className="rounded-[16px] bg-[#21252D] px-2 py-2 text-[13px]">Punjabi</button>
-                    <button className="rounded-[16px] bg-[#21252D] px-2 py-2 text-[13px]">Marathi</button>
-                    <button className="rounded-[16px] bg-[#21252D] px-2 py-2 text-[13px]">Haryanvi</button>
+                <div className="md:mt-5 md:mb-8 flex text-white gap-3 mt-3">
+                    <button onClick={() => setLang("punjabi")} className={lang == "punjabi" ? "rounded-[16px] bg-[#ff0000] px-2 py-2 text-[13px]" : "rounded-[16px] bg-[#21252D] px-2 py-2 text-[13px]"}>For You</button>
+                    <button onClick={() => setLang("english")} className={lang == "english" ? "rounded-[16px] bg-[#ff0000] px-2 py-2 text-[13px]" : "rounded-[16px] bg-[#21252D] px-2 py-2 text-[13px]"}>English</button>
+                    <button onClick={() => setLang("hindi")} className={lang == "hindi" ? "rounded-[16px] bg-[#ff0000] px-2 py-2 text-[13px]" : "rounded-[16px] bg-[#21252D] px-2 py-2 text-[13px]"}>Hindi</button>
+                    <button onClick={() => setLang("marathi")} className={lang == "marathi" ? "rounded-[16px] bg-[#ff0000] px-2 py-2 text-[13px]" : "rounded-[16px] bg-[#21252D] px-2 py-2 text-[13px]"}>Marathi</button>
+                    <button onClick={() => setLang("haryanvi")} className={lang == "haryanvi" ? "rounded-[16px] bg-[#ff0000] px-2 py-2 text-[13px]" : "rounded-[16px] bg-[#21252D] px-2 py-2 text-[13px]"}>Haryanvi</button>
                 </div>
                 {/* Songs list */}
                 <div className="w-[100%] grid grid-cols-2 md:grid-cols-6 mt-10 md:mt-3 gap-6 gap-y-6 md:gap-0 md:gap-y-0 md:pr-2 md:mb-0 mb-28">
