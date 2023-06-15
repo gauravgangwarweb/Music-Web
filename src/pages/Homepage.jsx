@@ -43,7 +43,7 @@ const Homepage = () => {
                     <button onClick={() => setLang("haryanvi")} className={lang == "haryanvi" ? "rounded-[16px] bg-[#ff0000] px-2 py-2 text-[13px]" : "rounded-[16px] bg-[#21252D] px-2 py-2 text-[13px]"}>Haryanvi</button>
                 </div>
                 {/* Songs list */}
-                <div className="w-[100%] grid grid-cols-2 md:grid-cols-6 mt-10 md:mt-3 gap-6 gap-y-6 md:gap-0 md:gap-y-0 md:pr-2 md:mb-0 mb-28">
+                <div className="w-[100%] grid grid-cols-2 md:grid-cols-6 mt-10 md:mt-3 gap-6 gap-y-6 md:gap-0 md:gap-y-3 md:pr-2 md:mb-0 mb-28">
                     {error ? (
                         <>Oh no, there was an error</>
                     ) : isLoading ? (
